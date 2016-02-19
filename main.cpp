@@ -1,10 +1,10 @@
-//
-//  main.cpp
-//  BinarySearchTree
-//
-//  Created by Ian Murphy on 2/11/16.
-//  Copyright © 2016 Ian Murphy. All rights reserved.
-//
+/*************************************************************
+ * Author:          Ian Murphy
+ * Filename:		main.cpp
+ * Date Created:	2/18/2016
+ * Modifications:	2/18/16 - Added documentation
+ *
+ **************************************************************/
 
 #include <iostream>
 using std::cout;

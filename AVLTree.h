@@ -256,8 +256,16 @@ AVLNode<T> * AVLTree<T>::Insert(AVLNode<T> * root, AVLNode<T> *nn, bool &taller)
     return root;
 }
 
-
-
+/**********************************************************************
+ * Purpose: Rotates left around a node
+ *
+ * Precondition:
+ *     must be a node
+ *
+ * Postcondition:
+ *      node becomes child, child becomes root
+ *
+ ************************************************************************/
 template <typename T>
 AVLNode<T> * AVLTree<T>::LeftRotate(AVLNode<T> * rop)
 {
@@ -268,6 +276,16 @@ AVLNode<T> * AVLTree<T>::LeftRotate(AVLNode<T> * rop)
     return temp;
 }
 
+/**********************************************************************
+ * Purpose: Rotates right around a node
+ *
+ * Precondition:
+ *     must be a node
+ *
+ * Postcondition:
+ *      node becomes child, child becomes root
+ *
+ ************************************************************************/
 template <typename T>
 AVLNode<T> * AVLTree<T>::RightRotate(AVLNode<T> * rop)
 {
@@ -279,6 +297,16 @@ AVLNode<T> * AVLTree<T>::RightRotate(AVLNode<T> * rop)
      
 }
 
+/**********************************************************************
+ * Purpose: Balances the left tree
+ *
+ * Precondition:
+ *     must be a node
+ *
+ * Postcondition:
+ *     tree becomes balanced
+ *
+ ************************************************************************/
 template <typename T>
 AVLNode<T> * AVLTree<T>::LeftBalance(AVLNode<T> * current_root, bool & taller)
 {
@@ -320,6 +348,16 @@ AVLNode<T> * AVLTree<T>::LeftBalance(AVLNode<T> * current_root, bool & taller)
     return current_root;
 }
 
+/**********************************************************************
+ * Purpose: Balances the right tree
+ *
+ * Precondition:
+ *     must be a node
+ *
+ * Postcondition:
+ *     tree becomes balanced
+ *
+ ************************************************************************/
 template <typename T>
 AVLNode<T> * AVLTree<T>::RightBalance(AVLNode<T> *current_root, bool & taller)
 {
@@ -359,12 +397,32 @@ AVLNode<T> * AVLTree<T>::RightBalance(AVLNode<T> *current_root, bool & taller)
     return current_root;
 }
 
+/**********************************************************************
+ * Purpose: Public height method
+ *
+ * Precondition:
+ *     none
+ *
+ * Postcondition:
+ *     returns the height of the entire tree
+ *
+ ************************************************************************/
 template <typename T>
 int AVLTree<T>::Height()
 {
     return Height(_root);
 }
 
+/**********************************************************************
+ * Purpose: Private hieght method
+ *
+ * Precondition:
+ *     none
+ *
+ * Postcondition:
+ *     returns the height of the passed root
+ *
+ ************************************************************************/
 template <typename T>
 int AVLTree<T>::Height(AVLNode<T> * current_root)
 {
@@ -391,6 +449,16 @@ int AVLTree<T>::Height(AVLNode<T> * current_root)
         return -1;
 }
 
+/**********************************************************************
+ * Purpose: Public delete method
+ *
+ * Precondition:
+ *     none
+ *
+ * Postcondition:
+ *     deletes the node that contains the data
+ *
+ ************************************************************************/
 template <typename T>
 bool AVLTree<T>::Delete(T data)
 {
@@ -405,6 +473,16 @@ bool AVLTree<T>::Delete(T data)
     return false;
 }
 
+/**********************************************************************
+ * Purpose: Private delete method
+ *
+ * Precondition:
+ *     current_root must be valid
+ *
+ * Postcondition:
+ *     the node containing the data is deleted
+ *
+ ************************************************************************/
 template <typename T>
 AVLNode<T> * AVLTree<T>::Delete(AVLNode<T> * current_root, T & data, bool & shorter, bool & success)
 {
@@ -467,6 +545,16 @@ AVLNode<T> * AVLTree<T>::Delete(AVLNode<T> * current_root, T & data, bool & shor
     return current_root;
 }
 
+/**********************************************************************
+ * Purpose: Balances the left tree after a delete
+ *
+ * Precondition:
+ *     must be a node
+ *
+ * Postcondition:
+ *     tree becomes balanced
+ *
+ ************************************************************************/
 template <typename T>
 AVLNode<T> * AVLTree<T>::DeleteLeftBalance(AVLNode<T> *current_root, bool &shorter)
 {
@@ -528,6 +616,16 @@ AVLNode<T> * AVLTree<T>::DeleteLeftBalance(AVLNode<T> *current_root, bool &short
 
 }
 
+/**********************************************************************
+ * Purpose: Balances the right tree after a delete
+ *
+ * Precondition:
+ *     must be a node
+ *
+ * Postcondition:
+ *     tree becomes balanced
+ *
+ ************************************************************************/
 template <typename T>
 AVLNode<T> * AVLTree<T>::DeleteRightBalance(AVLNode<T> *current_root, bool &shorter)
 {
@@ -587,24 +685,64 @@ AVLNode<T> * AVLTree<T>::DeleteRightBalance(AVLNode<T> *current_root, bool &shor
     }
     return current_root;
 }
+/**********************************************************************
+ * Purpose: Public in order traverse
+ *
+ * Precondition:
+ *     none
+ *
+ * Postcondition:
+ *     applies the passed function to all nodes in a specified order
+ *
+ ************************************************************************/
 template <typename T>
 void AVLTree<T>::InOrderTraverse(void (*func)(T))
 {
     BSTree<T>::InOrderTraverse(AVLTree<T>::_root, func);
 }
 
+/**********************************************************************
+ * Purpose: Public pre order traverse
+ *
+ * Precondition:
+ *     none
+ *
+ * Postcondition:
+ *     applies the passed function to all nodes in a specified order
+ *
+ ************************************************************************/
 template <typename T>
 void AVLTree<T>::PreOrderTraverse(void (*func)(T))
 {
     BSTree<T>::PreOrderTraverse(AVLTree<T>::_root, func);
 }
 
+/**********************************************************************
+ * Purpose: Public post order traverse
+ *
+ * Precondition:
+ *     none
+ *
+ * Postcondition:
+ *     applies the passed function to all nodes in a specified order
+ *
+ ************************************************************************/
 template <typename T>
 void AVLTree<T>::PostOrderTraverse(void (*func)(T))
 {
     BSTree<T>::PostOrderTraverse(AVLTree<T>::_root, func);
 }
 
+/**********************************************************************
+ * Purpose: Public breadth first traverse
+ *
+ * Precondition:
+ *     none
+ *
+ * Postcondition:
+ *     applies the passed function to all nodes in a specified order
+ *
+ ************************************************************************/
 template <typename T>
 void AVLTree<T>::BreadthFirstTraverse(void (*func)(T))
 {
@@ -612,6 +750,16 @@ void AVLTree<T>::BreadthFirstTraverse(void (*func)(T))
         BSTree<T>::BreadthFirstTraverse(AVLTree<T>::_root, func);
 }
 
+/**********************************************************************
+ * Purpose: Public purge
+ *
+ * Precondition:
+ *     none
+ *
+ * Postcondition:
+ *     passes the AVLtree root to the base class purge method
+ *
+ ************************************************************************/
 template <typename T>
 void AVLTree<T>::Purge()
 {
