@@ -24,15 +24,15 @@ class AVLNode : public TNode<T>
 public:
     AVLNode();
     AVLNode(AVLNode<T> * left, AVLNode<T> * right, T data);
+	AVLNode(const AVLNode<T> & cp);
+	~AVLNode();
+	AVLNode<T> & operator = (const AVLNode<T> & rhs );
     Balance GetBalance();
     void SetBalance(Balance val);
     Balance & Balance();
 private:
     
     enum Balance _balance;
-    //AVLNode<T> * _left;
-    //AVLNode<T> * _right;
-    //T _data;
 };
 
 template <typename T>
@@ -44,7 +44,32 @@ AVLNode<T>::AVLNode() : _balance(EH)
 template <typename T>
 AVLNode<T>::AVLNode(AVLNode<T> * left, AVLNode<T> * right, T data) : _balance(EH), TNode<T>(left, right, data)
 {
-    //_left(left), _right(right),
+ 
+}
+
+template <typename T>
+AVLNode<T>::AVLNode(const AVLNode<T> & cp) : _balance(cp._balance), TNode<T>(nullptr, nullptr, cp._data)
+{
+
+}
+
+template <typename T>
+AVLNode<T>::~AVLNode()
+{
+
+}
+
+template <typename T>
+AVLNode<T> & AVLNode<T>::operator = (const AVLNode<T> & rhs)
+{
+	if (this != &rhs)
+	{
+		_left = nullptr;
+		_right = nullptr;
+		_data = rhs._data;
+		_balance = rhs._balance;
+	}
+	return *this;
 }
 
 template <typename T>

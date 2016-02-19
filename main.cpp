@@ -10,7 +10,7 @@
 using std::cout;
 using std::endl;
 #include "AVLTree.h"
-//#define _CRTDBG_MAP_ALLOC
+#define _CRTDBG_MAP_ALLOC
 
 void Print(int data)
 {
@@ -20,7 +20,7 @@ void Print(int data)
 
 int main(int argc, const char * argv[])
 {
-	//_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     AVLTree<int> tree;
     cout<<"Inserting several values"<<endl;
     tree.Insert(8);
