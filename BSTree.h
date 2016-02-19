@@ -1,6 +1,6 @@
 /*************************************************************
 * Author:		Ian Murphy
-* Filename:		Array.h
+* Filename:		BSTree.h
 * Date Created:	2/18/2016
 * Modifications:	2/18/16 - Added documentation
 *

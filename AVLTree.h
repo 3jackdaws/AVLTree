@@ -1,10 +1,38 @@
-//
-//  AVLTree.h
-//  AVL Tree
-//
-//  Created by Ian Murphy on 2/16/16.
-//  Copyright © 2016 Ian Murphy. All rights reserved.
-//
+/*************************************************************
+* Author:		Ian Murphy
+* Filename:		AVLTree.h
+* Date Created:	2/18/2016
+* Modifications:	2/18/16 - Added documentation
+*
+**************************************************************/
+
+/************************************************************************
+* Class: AVLTree
+*
+* Purpose: This class creates a AVLTree that will self balance
+*
+* Manager functions:
+* 	AVLTree();
+    AVLTree(const AVLTree<T> & cp);
+    ~AVLTree();
+    AVLTree & operator = (const AVLTree<T> & rhs);
+    void Insert(T data);
+		Inserts data into the tree
+    int Height();
+		returns the current height of the tree
+    bool Delete(T data);
+		Deletes the data in the tree
+    void InOrderTraverse(void (*func)(T));
+		
+    void PreOrderTraverse(void (*func)(T));
+
+    void PostOrderTraverse(void (*func)(T));
+
+    void BreadthFirstTraverse(void (*func)(T));
+    
+    void Purge();
+*		...
+*************************************************************************/
 
 #ifndef AVLTree_h
 #define AVLTree_h
@@ -42,12 +70,32 @@ private:
     AVLNode<T> * _root;
 };
 
+/**********************************************************************
+* Purpose: This is a default ctor.
+*
+* Precondition:
+*     None
+*
+* Postcondition:
+*      sets up an AVLTree object so that it isn't filled with garbage
+*
+************************************************************************/
 template <typename T>
 AVLTree<T>::AVLTree() : _root(nullptr)
 {
     
 }
 
+/**********************************************************************
+* Purpose: This is a copy ctor.
+*
+* Precondition:
+*     None
+*
+* Postcondition:
+*      copies the object to a new object
+*
+************************************************************************/
 template <typename T>
 AVLTree<T>::AVLTree(const AVLTree & cp) : _root(nullptr)
 {
@@ -70,6 +118,16 @@ AVLTree<T>::AVLTree(const AVLTree & cp) : _root(nullptr)
     }
 }
 
+/**********************************************************************
+* Purpose: This is a dtor
+*
+* Precondition:
+*     None
+*
+* Postcondition:
+*      detroys the object
+*
+************************************************************************/
 template <typename T>
 AVLTree<T>::~AVLTree()
 {
@@ -77,6 +135,16 @@ AVLTree<T>::~AVLTree()
     _root = nullptr;
 }
 
+/**********************************************************************
+* Purpose: Sets an already instantiated object to the values of another similar object.
+*
+* Precondition:
+*     Needs two instantiated objects
+*
+* Postcondition:
+*      the object on the left side of the = operator is now the same as the object on the right side
+*
+************************************************************************/
 template <typename T>
 AVLTree<T> & AVLTree<T>::operator = (const AVLTree<T> &rhs)
 {
@@ -104,6 +172,16 @@ AVLTree<T> & AVLTree<T>::operator = (const AVLTree<T> &rhs)
     return *this;
 }
 
+/**********************************************************************
+* Purpose: Inserts data
+*
+* Precondition:
+*     Needs two instantiated objects
+*
+* Postcondition:
+*      data  is inserted
+*
+************************************************************************/
 template <typename T>
 void AVLTree<T>::Insert(T data)
 {
@@ -112,6 +190,16 @@ void AVLTree<T>::Insert(T data)
     _root = Insert(_root, nn, taller);
 }
 
+/**********************************************************************
+* Purpose: actual Insert method
+*
+* Precondition:
+*     Needs two instantiated objects
+*
+* Postcondition:
+*      data  is inserted
+*
+************************************************************************/
 template <typename T>
 AVLNode<T> * AVLTree<T>::Insert(AVLNode<T> * root, AVLNode<T> *nn, bool &taller)
 {
